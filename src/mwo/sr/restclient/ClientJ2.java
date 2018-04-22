@@ -98,7 +98,7 @@ public class ClientJ2 {
 		String result = PASS;
 		if(res == null) result = FAIL;
 		
-		System.out.println("Result: " + res.getDirections());
+		System.out.println("Result: " + res.getStopName() + " " + res.getRoutes().get(0).getDirections().get(0));
 		System.out.println("\n\n*** Test case '" + Thread.currentThread().getStackTrace()[1].getMethodName() +"' finished");
 	}
 	
