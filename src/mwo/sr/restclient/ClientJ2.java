@@ -16,6 +16,8 @@ import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.client.Entity;
 
+import mwo.sr.google.G1;
+
 //http://maps.googleapis.com/maps/api/directions/json?origin=LOC1&destination=LOC2&language=pl-PL
 
 
@@ -30,8 +32,9 @@ public class ClientJ2 {
 	{
 		ClientJ2 c = new ClientJ2();
 		c.init();
-		c.interactiveUI(c);
 		c.getRawJson();
+		c.interactiveUI(c);
+
 	}
 
 	public void interactiveUI(ClientJ2 client)
@@ -88,14 +91,14 @@ public class ClientJ2 {
 	{
 		System.out.println("\n\n*** Starting test case '" + Thread.currentThread().getStackTrace()[1].getMethodName() +"'...");
 
-		String res = client
-				.target("http://maps.googleapis.com/maps/api/directions/json?origin=LOC1&destination=LOC2&language=pl-PL")
-				.request(MediaType.APPLICATION_JSON).get().readEntity(String.class);
+		G1 res = client
+				.target("http://www.ttss.krakow.pl/internetservice/services/passageInfo/stopPassages/stop?stop=365&mode=departure")
+				.request(MediaType.APPLICATION_JSON).get().readEntity(G1.class);
 		
 		String result = PASS;
 		if(res == null) result = FAIL;
 		
-		System.out.println("Result: " + res);
+		System.out.println("Result: " + res.getDirections());
 		System.out.println("\n\n*** Test case '" + Thread.currentThread().getStackTrace()[1].getMethodName() +"' finished");
 	}
 	
